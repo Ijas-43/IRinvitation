@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Venue — ECR Masjid, Kottaipattinam with Google Maps directions
+   ========================================================================== */
+
+.venue {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 25%, #fffdfc 0%, #fff0f5 55%, #fce4ec 100%);
+  padding: clamp(75px, 10vw, 125px) 20px;
+}
+
+.venue__card {
+  position: relative;
+  max-width: 680px;
+  margin: clamp(32px, 5vw, 48px) auto 0;
+  padding: clamp(38px, 6vw, 64px) clamp(24px, 5vw, 48px);
+  text-align: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+
+.venue__icon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 24px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(212, 175, 119, 0.5);
+  box-shadow: 0 6px 20px rgba(183, 110, 121, 0.16);
+  margin-bottom: 6px;
+}
+
+.venue__crescent,
+.venue__star {
+  color: var(--champagne-gold);
+  font-size: 15px;
+}
+
+.venue__pin-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--grad-rose);
+  box-shadow: 0 4px 14px rgba(231, 84, 128, 0.4);
+}
+
+.venue__pin {
+  font-size: 18px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.venue__name {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.8vw, 36px);
+  font-weight: 600;
+  color: var(--deep-burgundy);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.venue__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--rose-gold);
+  margin: 0;
+}
+
+.venue__note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin: 4px 0 10px;
+}
+
+.venue__actions {
+  margin-top: 8px;
+}
+
+.venue__btn {
+  font-size: 13px;
+  padding: 16px 36px;
+  border-radius: 100px;
+  box-shadow: 0 14px 36px rgba(231, 84, 128, 0.4);
+}
+
+/* Floral corner artwork */
+.venue__ornament {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.venue__ornament--flip {
+  top: auto;
+  left: auto;
+  bottom: 10px;
+  right: 10px;
+  transform: rotate(180deg);
+}
+
+@media (max-width: 600px) {
+  .venue__card {
+    padding: 34px 18px;
+  }
+}

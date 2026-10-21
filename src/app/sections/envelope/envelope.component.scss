@@ -1,0 +1,925 @@
+/* ==========================================================================
+   Luxury 3D Envelope Introduction
+   Royal Pink + Ivory + Rose Gold — blush paper, folded 3D envelope,
+   rose-gold wax seal with the "I & R" monogram, floating invitation card.
+   ========================================================================== */
+
+:host {
+  display: block;
+}
+
+/* ------------------------------- the overlay ------------------------------ */
+
+.env-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 34%, #fffdfc 0%, #fff2f7 42%, #fbd9e6 74%, #f3b9ce 100%);
+  isolation: isolate;
+}
+
+.env-intro--gone {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ------------------------------- backdrop -------------------------------- */
+
+.env-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.env-bg__pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  background-image:
+    radial-gradient(circle at 50% 50%, var(--rose-gold) 1.2px, transparent 1.2px),
+    radial-gradient(circle at 0 0, var(--champagne-gold) 1.2px, transparent 1.2px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(ellipse at 50% 45%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 20%, transparent 78%);
+}
+
+/* Soft ambient light pools.
+   Deliberately blur-free: a radial gradient with a smooth multi-stop falloff
+   looks just as soft as a blurred box, but costs nothing to animate.
+   Only `opacity` is animated (a pure compositing operation) — animating a
+   `transform` on a filtered element forces a re-raster every frame. */
+.env-glow {
+  position: absolute;
+  border-radius: 50%;
+  will-change: opacity;
+}
+.env-glow--a {
+  width: 62vmax;
+  height: 62vmax;
+  left: -20vmax;
+  top: -22vmax;
+  background: radial-gradient(
+    circle,
+    rgba(255, 214, 231, 0.95) 0%,
+    rgba(255, 214, 231, 0.62) 28%,
+    rgba(255, 214, 231, 0.24) 50%,
+    rgba(255, 214, 231, 0.08) 66%,
+    transparent 78%
+  );
+  animation: env-breathe 11s ease-in-out infinite;
+}
+.env-glow--b {
+  width: 56vmax;
+  height: 56vmax;
+  right: -18vmax;
+  bottom: -19vmax;
+  background: radial-gradient(
+    circle,
+    rgba(250, 232, 200, 0.9) 0%,
+    rgba(250, 232, 200, 0.58) 28%,
+    rgba(250, 232, 200, 0.22) 50%,
+    rgba(250, 232, 200, 0.07) 66%,
+    transparent 78%
+  );
+  animation: env-breathe 13s ease-in-out infinite 1.6s;
+}
+.env-glow--c {
+  width: 48vmax;
+  height: 48vmax;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.55) 32%,
+    rgba(255, 255, 255, 0.18) 56%,
+    transparent 76%
+  );
+}
+
+/* rose-gold decorative frame */
+.env-frame {
+  position: absolute;
+  width: clamp(46px, 12vw, 96px);
+  height: clamp(46px, 12vw, 96px);
+  border: 1px solid rgba(212, 175, 119, 0.55);
+}
+.env-frame--tl {
+  top: max(16px, env(safe-area-inset-top));
+  left: max(16px, env(safe-area-inset-left));
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: 18px;
+}
+.env-frame--tr {
+  top: max(16px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  border-left: 0;
+  border-bottom: 0;
+  border-top-right-radius: 18px;
+}
+.env-frame--bl {
+  bottom: max(16px, env(safe-area-inset-bottom));
+  left: max(16px, env(safe-area-inset-left));
+  border-right: 0;
+  border-top: 0;
+  border-bottom-left-radius: 18px;
+}
+.env-frame--br {
+  bottom: max(16px, env(safe-area-inset-bottom));
+  right: max(16px, env(safe-area-inset-right));
+  border-left: 0;
+  border-top: 0;
+  border-bottom-right-radius: 18px;
+}
+
+/* floating rose petals */
+.env-petal {
+  position: absolute;
+  top: -6vh;
+  border-radius: 80% 0 80% 0;
+  background: linear-gradient(135deg, #fbc7da, #e75480);
+  box-shadow: 0 4px 10px rgba(183, 110, 121, 0.25);
+  animation: env-fall linear infinite;
+  will-change: transform;
+}
+
+/* ambient light motes */
+.env-spark {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffaf0, rgba(212, 175, 119, 0.2));
+  box-shadow: 0 0 10px rgba(212, 175, 119, 0.85);
+  animation: env-twinkle ease-in-out infinite;
+}
+
+/* ------------------------------ envelope scene ---------------------------- */
+
+.env-scene {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  justify-items: center;
+  gap: clamp(10px, 2.2vh, 22px);
+  width: 100%;
+  padding: 0 16px;
+}
+
+.env-stage {
+  width: min(340px, 82vw, 54vh);
+  container-type: inline-size;
+}
+
+.env-3d {
+  perspective: 1150px;
+  perspective-origin: 50% 40%;
+}
+
+.env {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 340 / 230;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  border-radius: 16px;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.env:hover,
+.env:focus-visible {
+  transform: translateY(-6px) rotateX(5deg);
+}
+.env:focus-visible {
+  outline: 2px solid var(--primary-pink);
+  outline-offset: 10px;
+}
+
+.env__shadow {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: -7%;
+  height: 18%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(109, 41, 68, 0.34), transparent 70%);
+  filter: blur(9px);
+}
+
+/* back panel — blush paper with a soft fibre texture */
+.env__back {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 16px;
+  background: linear-gradient(155deg, #fce1ea 0%, #f6bfd3 52%, #e79fb8 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(212, 175, 119, 0.55),
+    inset 0 -20px 36px rgba(109, 41, 68, 0.22),
+    0 26px 48px rgba(109, 41, 68, 0.26);
+}
+.env__back::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.55;
+  mix-blend-mode: soft-light;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.5) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(-45deg, rgba(109, 41, 68, 0.22) 0 1px, transparent 1px 5px);
+}
+
+/* the invitation card tucked inside */
+.env__card {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 7%;
+  bottom: 12%;
+  z-index: 1;
+  border-radius: 10px;
+  background: linear-gradient(165deg, #fffdfa 0%, #fff1f6 58%, #ffe4ef 100%);
+  border: 1px solid rgba(212, 175, 119, 0.75);
+  box-shadow: 0 16px 30px rgba(109, 41, 68, 0.26);
+  will-change: transform, opacity;
+}
+
+.env-card-inner {
+  position: absolute;
+  inset: 6%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.env-card-bismillah {
+  font-size: 12px;
+  font-size: clamp(9px, 3.4cqw, 15px);
+  line-height: 1.4;
+  color: var(--deep-burgundy);
+}
+
+.env-card-kicker {
+  font-size: 7px;
+  font-size: clamp(5px, 1.9cqw, 8px);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+.env-card-names {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+  font-family: var(--font-script);
+  font-size: 18px;
+  font-size: clamp(13px, 5.6cqw, 26px);
+  line-height: 1.15;
+  color: var(--deep-burgundy);
+}
+.env-card-names i {
+  font-style: normal;
+}
+.env-card-names b {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.5em;
+  color: var(--primary-pink);
+}
+
+.env-card-rule {
+  display: block;
+  width: 42%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--champagne-gold), transparent);
+}
+
+.env-card-date {
+  font-family: var(--font-display);
+  font-size: 8px;
+  font-size: clamp(5px, 2cqw, 9px);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+.env-card-venue {
+  font-size: 7px;
+  font-size: clamp(5px, 1.9cqw, 8px);
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+/* front pocket */
+.env__pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(168deg, #facbdd 0%, #f0a3bf 46%, #d77594 100%);
+  box-shadow: inset 0 -22px 34px rgba(109, 41, 68, 0.2);
+}
+.env__pocket::before,
+.env__pocket::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.env__pocket::before {
+  clip-path: polygon(0 0, 50% 54%, 0 100%);
+  background: linear-gradient(200deg, rgba(255, 255, 255, 0.32), rgba(109, 41, 68, 0.16));
+}
+.env__pocket::after {
+  clip-path: polygon(100% 0, 50% 54%, 100% 100%);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.18), rgba(109, 41, 68, 0.24));
+}
+
+/* gold fold lines along the pocket */
+.env__fold {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.env__fold svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* top flap */
+.env__flap {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  transform-origin: 50% 0%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.flap-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.flap-svg--front {
+  backface-visibility: hidden;
+}
+.flap-svg--back {
+  transform: rotateX(180deg);
+  backface-visibility: hidden;
+}
+
+/* rose-gold wax seal */
+.env__seal-wrap {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: 23%;
+  aspect-ratio: 1;
+  z-index: 6;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.seal-glow {
+  position: absolute;
+  inset: -50%;
+  border-radius: 50%;
+  opacity: 0.45;
+  background: radial-gradient(circle, rgba(244, 205, 130, 0.9), rgba(244, 205, 130, 0.25) 46%, transparent 72%);
+  filter: blur(9px);
+  will-change: transform, opacity;
+}
+
+.env__seal {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.seal-half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+.seal-half--l { left: 0; }
+.seal-half--r { right: 0; }
+
+.seal-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 26%, rgba(255, 255, 255, 0.45), transparent 52%),
+    radial-gradient(circle at 70% 78%, rgba(60, 20, 40, 0.28), transparent 56%),
+    linear-gradient(150deg, #e79aae 0%, #c47386 46%, #8d4a56 100%);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 238, 216, 0.55),
+    inset 0 0 0 4px rgba(109, 41, 68, 0.35),
+    inset 0 7px 14px rgba(255, 255, 255, 0.22),
+    inset 0 -9px 18px rgba(0, 0, 0, 0.3),
+    0 10px 22px rgba(109, 41, 68, 0.45);
+}
+.seal-half--r .seal-face { left: -100%; }
+
+.seal-face::after {
+  content: '';
+  position: absolute;
+  inset: 9%;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 244, 226, 0.55);
+}
+
+.seal-mono {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  font-size: clamp(9px, 8.4cqw, 24px);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  background: linear-gradient(140deg, #fffaf0 0%, #f3d092 45%, #c99a52 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(58, 18, 30, 0.6));
+}
+
+.seal-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0.55) 42deg,
+    rgba(255, 255, 255, 0) 96deg,
+    rgba(255, 255, 255, 0) 360deg
+  );
+  mix-blend-mode: screen;
+  animation: env-spin 3.6s linear infinite;
+}
+
+/* floral corner ornaments */
+.env__corner {
+  position: absolute;
+  z-index: 5;
+  font-size: 12px;
+  font-size: clamp(9px, 3.2cqw, 15px);
+  line-height: 1;
+  color: rgba(212, 175, 119, 0.9);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.75);
+  pointer-events: none;
+}
+.env__corner--tl { left: 3%; top: 4%; }
+.env__corner--tr { right: 3%; top: 4%; transform: scaleX(-1); }
+.env__corner--bl { left: 3%; bottom: 5%; transform: scaleY(-1); }
+.env__corner--br { right: 3%; bottom: 5%; transform: scale(-1); }
+
+/* ------------------------------- scene copy ------------------------------ */
+
+.env-kicker {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-size: clamp(15px, 3.8vw, 23px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  color: var(--deep-burgundy);
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.8);
+}
+
+.env-tap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: clamp(9.5px, 2.5vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  transition: opacity 0.45s var(--ease-lux), transform 0.45s var(--ease-lux);
+}
+.env-tap--hidden {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.env-tap__icon {
+  font-size: 1.2em;
+  color: var(--primary-pink);
+  animation: env-heart 1.8s ease-in-out infinite;
+}
+
+/* ---------------------------- invitation preview -------------------------- */
+
+.invite-preview {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding:
+    calc(14px + env(safe-area-inset-top))
+    calc(12px + env(safe-area-inset-right))
+    calc(14px + env(safe-area-inset-bottom))
+    calc(12px + env(safe-area-inset-left));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.invite-preview--visible {
+  pointer-events: auto;
+}
+
+/* The preview is focused programmatically when it appears — it is a
+   landmark, not an interactive control, so it must not show a focus ring. */
+.invite-preview:focus,
+.invite-preview:focus-visible {
+  outline: none;
+}
+
+/* Wrapper that anchors the blush bloom behind the card. */
+.invite-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(430px, 92vw);
+}
+
+/* Blush-pink bloom that swells around the card during the hand-off.
+   Deliberately blur-free: a smooth multi-stop radial gradient is just as
+   soft as a blurred box but costs nothing to animate (pure composite). */
+.invite-stage__glow {
+  position: absolute;
+  inset: -10% -14%;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 226, 238, 0.62) 30%,
+    rgba(248, 187, 208, 0.42) 50%,
+    rgba(231, 84, 128, 0.22) 68%,
+    rgba(231, 84, 128, 0.06) 82%,
+    transparent 92%
+  );
+}
+
+.invite-card {
+  position: relative;
+  width: min(430px, 92vw);
+  max-height: min(80dvh, 780px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: clamp(26px, 6.4vw, 42px) clamp(20px, 5.6vw, 36px) clamp(20px, 5vw, 34px);
+  border-radius: 20px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, #fffdfa 0%, #fff4f8 48%, #ffe6ef 100%);
+  border: 1px solid rgba(212, 175, 119, 0.6);
+  box-shadow:
+    0 34px 80px rgba(109, 41, 68, 0.34),
+    0 10px 24px rgba(109, 41, 68, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+    inset 0 0 70px rgba(255, 250, 245, 0.75);
+  will-change: transform;
+}
+
+.invite-card__rule {
+  display: block;
+  height: 1px;
+  margin: 0 auto 14px;
+  width: 56%;
+  background: linear-gradient(90deg, transparent, var(--champagne-gold), transparent);
+}
+.invite-card__rule--top {
+  margin-bottom: 12px;
+}
+
+.invite-corner {
+  position: absolute;
+  width: clamp(42px, 13vw, 62px);
+  color: rgba(212, 175, 119, 0.9);
+  pointer-events: none;
+}
+.invite-corner svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.invite-corner--tl { top: 10px; left: 10px; }
+.invite-corner--tr { top: 10px; right: 10px; transform: scaleX(-1); }
+.invite-corner--bl { bottom: 10px; left: 10px; transform: scaleY(-1); }
+.invite-corner--br { bottom: 10px; right: 10px; transform: scale(-1); }
+
+.invite-card__inner {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.invite-bismillah {
+  margin: 0;
+  font-size: clamp(15px, 4.2vw, 21px);
+  line-height: 1.7;
+  color: var(--deep-burgundy);
+}
+
+.invite-kicker {
+  margin: 0;
+  font-size: clamp(10px, 2.6vw, 12px);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+.invite-rule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 72%;
+  margin: 2px 0;
+  color: var(--champagne-gold);
+  font-size: 11px;
+}
+.invite-rule i {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 119, 0.85));
+}
+.invite-rule i:last-child {
+  background: linear-gradient(90deg, rgba(212, 175, 119, 0.85), transparent);
+}
+
+.invite-lead {
+  margin: 2px 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(13px, 3.4vw, 16px);
+  color: var(--ink-soft);
+}
+
+.invite-names {
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  margin: 4px 0;
+}
+
+.invite-name {
+  display: block;
+  font-family: var(--font-script);
+  font-size: clamp(30px, 8.4vw, 45px);
+  line-height: 1.3;
+  white-space: nowrap;
+  background-image: linear-gradient(
+    135deg,
+    #8b4053 0%,
+    #b76e79 30%,
+    #d6a35c 55%,
+    #a75c65 80%,
+    #7b354d 100%
+  );
+  background-size: 200% 100%;
+  background-position: 30% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.018em rgba(109, 41, 68, 0.42);
+  filter: drop-shadow(0 6px 14px rgba(109, 41, 68, 0.24));
+  animation: env-shimmer 8s ease-in-out infinite;
+}
+
+.invite-amp {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(15px, 4vw, 22px);
+  line-height: 1.1;
+  color: var(--primary-pink);
+}
+
+.invite-date {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(12px, 3.2vw, 15px);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--deep-burgundy);
+}
+
+.invite-venue {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(12px, 3.1vw, 15px);
+  letter-spacing: 0.06em;
+  color: var(--rose-gold);
+}
+
+.invite-message {
+  margin: 6px 0 0;
+  max-width: 34ch;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(12px, 3.1vw, 14.5px);
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+/* --------------------- automatic hand-off indicator --------------------- */
+
+.invite-auto {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+  /* Visible through CSS (not through a tween) so the message can never stay
+     hidden when the browser throttles the animation frames. It only becomes
+     visible together with the preview card, which hides it until then. */
+  opacity: 1;
+}
+
+.invite-auto__ring {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 119, 0.35);
+}
+.invite-auto__ring i {
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  border-top-color: var(--rose-gold);
+  border-right-color: rgba(212, 175, 119, 0.35);
+  animation: env-auto-spin 1.15s linear infinite;
+}
+
+.invite-auto__label {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(10px, 2.7vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.85);
+  min-height: 1.4em;
+}
+
+.invite-auto__track {
+  display: block;
+  width: min(240px, 64%);
+  height: 2px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(212, 175, 119, 0.22);
+}
+
+.invite-auto__bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--champagne-gold), var(--rose-gold), var(--primary-pink));
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.invite-seal-note {
+  margin: 10px 0 0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(183, 110, 121, 0.75);
+}
+
+/* ---------------------------- cinematic light wash ------------------------ */
+
+.env-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  /* own layer → the bloom is a pure composite, no per-frame re-raster */
+  will-change: opacity, transform;
+  background: radial-gradient(
+    circle at 50% 46%,
+    rgba(255, 255, 255, 0.99) 0%,
+    rgba(255, 236, 244, 0.96) 30%,
+    rgba(243, 186, 210, 0.94) 58%,
+    rgba(183, 110, 121, 0.92) 100%
+  );
+}
+
+/* ------------------------------- keyframes ------------------------------- */
+
+@keyframes env-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes env-breathe {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes env-heart {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.28); opacity: 1; }
+}
+
+@keyframes env-twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.7); }
+  50% { opacity: 0.9; transform: scale(1.15); }
+}
+
+@keyframes env-fall {
+  0% { transform: translate3d(0, -8vh, 0) rotate(0deg); }
+  50% { transform: translate3d(var(--drift, 0), 46vh, 0) rotate(180deg); }
+  100% { transform: translate3d(0, 104vh, 0) rotate(360deg); }
+}
+
+@keyframes env-shimmer {
+  0%, 100% { background-position: 12% 50%; }
+  50% { background-position: 88% 50%; }
+}
+
+@keyframes env-auto-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ------------------------------ responsive ------------------------------- */
+
+@media (max-width: 420px) {
+  .env-stage { width: min(300px, 84vw, 50vh); }
+  .env-kicker { font-size: clamp(14px, 4.4vw, 19px); }
+  .invite-card { border-radius: 16px; }
+}
+
+@media (max-height: 560px) {
+  .env-scene { gap: 8px; }
+  .env-kicker { font-size: clamp(13px, 3.4vw, 17px); }
+  .invite-card { max-height: min(86dvh, 560px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .env-petal,
+  .env-spark,
+  .env-glow,
+  .seal-shine,
+  .env-tap__icon,
+  .invite-name {
+    animation: none !important;
+  }
+  /* The countdown indicator would be pure motion — only the message stays. */
+  .invite-auto__ring,
+  .invite-auto__track {
+    display: none;
+  }
+  .env:hover,
+  .env:focus-visible {
+    transform: none;
+  }
+}

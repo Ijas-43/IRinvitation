@@ -1,0 +1,134 @@
+<section id="couple" class="section couple-section" #section>
+  <span class="botanical bg-flower fl-1" data-parallax="-80" data-parallax-rotate="45" aria-hidden="true">✿</span>
+  <span class="botanical bg-flower fl-2" data-parallax="-50" data-parallax-rotate="-38" aria-hidden="true">❀</span>
+
+  <div class="section-head" data-reveal-group>
+    <span class="section-kicker" data-reveal>{{ cfg.couple.eyebrow }}</span>
+    <h2>
+      <span class="split-line" data-split>{{ cfg.couple.title }}</span>
+      <i data-reveal>{{ cfg.couple.titleEm }}</i>
+    </h2>
+    <p class="section-lead" data-reveal>
+      Two respected families united in prayer, honor, and gratitude.
+    </p>
+  </div>
+
+  <div class="couple-grid" data-reveal-group>
+    <!-- Groom Card -->
+    <article
+      class="person-card glass-card glass-card--rose"
+      data-reveal
+      [appTilt]="7"
+      aria-label="Groom: Ijaz Khan. S, MCA"
+      (mouseenter)="onCardHover(cardGroom)"
+      #cardGroom
+    >
+      <div class="card-floral-corner top-left" aria-hidden="true">
+        <app-floral-frame variant="corner"></app-floral-frame>
+      </div>
+      <div class="card-floral-corner bottom-right" aria-hidden="true">
+        <app-floral-frame variant="corner"></app-floral-frame>
+      </div>
+
+      <div class="person-art">
+        <div class="islamic-medallion">
+          <span class="medallion-ring"></span>
+          <span class="medallion-arch" aria-hidden="true"></span>
+          <span class="medallion-moon" aria-hidden="true">☾</span>
+          <span class="medallion-initial shimmer">I</span>
+          <span class="medallion-label">GROOM</span>
+        </div>
+      </div>
+
+      <div class="person-body">
+        <span class="person-label">{{ cfg.couple.groom.label }}</span>
+        <h3 class="person-name">{{ cfg.couple.groom.full }}</h3>
+        <span class="person-qualification">{{ cfg.couple.groom.qualification }}</span>
+
+        <div class="family-details">
+          <span class="family-relation">{{ cfg.couple.groom.parentsTitle }}</span>
+          <p class="parent-name">{{ cfg.couple.groom.father }}</p>
+          <span class="parent-amp">&amp;</span>
+          <p class="parent-name">{{ cfg.couple.groom.mother }}</p>
+        </div>
+
+        <p class="family-summary">
+          {{ cfg.couple.groom.parentsSummary }}
+        </p>
+
+        <div class="person-card-footer">
+          <span class="date-chip">{{ displayDate }}</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Center Intertwined Monogram Medallion -->
+    <div class="couple-center" data-reveal>
+      <div
+        class="monogram-badge"
+        role="button"
+        tabindex="0"
+        (click)="onAmpersandClick($event)"
+        aria-label="Jasbika - I & R monogram"
+        title="Ijaz & Rasbika — Jasbika"
+      >
+        <span class="badge-ring ring-outer"></span>
+        <span class="badge-ring ring-inner"></span>
+        <div class="badge-core">
+          <span class="core-crescent" aria-hidden="true">☾</span>
+          <span class="core-monogram shimmer">{{ cfg.couple.monogram }}</span>
+          <span class="core-brand">{{ cfg.couple.brand }}</span>
+        </div>
+      </div>
+      <span class="center-caption">Two Hearts · One Beautiful Journey</span>
+    </div>
+
+    <!-- Bride Card -->
+    <article
+      class="person-card glass-card glass-card--rose"
+      data-reveal
+      [appTilt]="7"
+      aria-label="Bride: Rasbika Banu. M, B.Com (CA) & Muballiga"
+      (mouseenter)="onCardHover(cardBride)"
+      #cardBride
+    >
+      <div class="card-floral-corner top-left" aria-hidden="true">
+        <app-floral-frame variant="corner"></app-floral-frame>
+      </div>
+      <div class="card-floral-corner bottom-right" aria-hidden="true">
+        <app-floral-frame variant="corner"></app-floral-frame>
+      </div>
+
+      <div class="person-art is-bride">
+        <div class="islamic-medallion">
+          <span class="medallion-ring"></span>
+          <span class="medallion-arch" aria-hidden="true"></span>
+          <span class="medallion-moon" aria-hidden="true">☾</span>
+          <span class="medallion-initial shimmer">R</span>
+          <span class="medallion-label">BRIDE</span>
+        </div>
+      </div>
+
+      <div class="person-body">
+        <span class="person-label">{{ cfg.couple.bride.label }}</span>
+        <h3 class="person-name">{{ cfg.couple.bride.full }}</h3>
+        <span class="person-qualification">{{ cfg.couple.bride.qualification }}</span>
+
+        <div class="family-details">
+          <span class="family-relation">{{ cfg.couple.bride.parentsTitle }}</span>
+          <p class="parent-name">{{ cfg.couple.bride.father }}</p>
+          <span class="parent-amp">&amp;</span>
+          <p class="parent-name">{{ cfg.couple.bride.mother }}</p>
+        </div>
+
+        <p class="family-summary">
+          {{ cfg.couple.bride.parentsSummary }}
+        </p>
+
+        <div class="person-card-footer">
+          <span class="date-chip">{{ displayDate }}</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

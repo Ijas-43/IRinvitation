@@ -1,0 +1,359 @@
+/* ==========================================================================
+   Wedding Date & Flip-Clock Countdown + Beautiful Beginning Message
+   ========================================================================== */
+
+.date-countdown-section {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 25%, #fffdfc 0%, #fff0f5 55%, #fce4ec 100%);
+  padding: clamp(75px, 10vw, 130px) 20px;
+}
+
+/* -------------------- 5. Beautiful Beginning Message -------------------- */
+
+.beginning-card {
+  max-width: 820px;
+  margin: 0 auto clamp(54px, 7vw, 84px);
+  padding: clamp(34px, 6vw, 60px) clamp(22px, 5vw, 50px);
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.beginning-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(212, 175, 119, 0.45);
+}
+
+.badge-gem {
+  color: var(--champagne-gold);
+  font-size: 13px;
+}
+
+.badge-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primary-pink);
+}
+
+.beginning-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.4vw, 48px);
+  font-weight: 500;
+  color: var(--deep-burgundy);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.beginning-title i {
+  font-family: var(--font-script);
+  font-style: normal;
+  color: var(--primary-pink);
+  font-size: 1.2em;
+}
+
+.beginning-lead {
+  font-family: var(--font-serif);
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: var(--deep-burgundy);
+  line-height: 1.8;
+  max-width: 660px;
+  margin: 0;
+}
+
+.beginning-sublead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--ink-soft);
+  max-width: 580px;
+  margin: 0;
+}
+
+.beginning-monogram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.monogram-text {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.brand-text {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+/* -------------------- 6. Exact Date Card -------------------- */
+
+.date-display-card {
+  max-width: 620px;
+  margin: 0 auto 46px;
+  padding: clamp(28px, 5vw, 44px) clamp(20px, 4vw, 36px);
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(212, 175, 119, 0.65);
+  box-shadow: var(--shadow-md), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.82) 100%);
+}
+
+.date-ornament {
+  font-size: 13px;
+  color: var(--rose-gold);
+  letter-spacing: 4px;
+}
+
+.date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.date-weekday {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 3.2vw, 26px);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: var(--rose-gold);
+  text-transform: uppercase;
+}
+
+.date-number {
+  font-family: var(--font-display);
+  font-size: clamp(68px, 14vw, 114px);
+  font-weight: 700;
+  line-height: 0.95;
+  color: var(--deep-burgundy);
+  letter-spacing: -0.04em;
+  margin: 4px 0;
+  text-shadow: 0 4px 24px rgba(183, 110, 121, 0.3);
+}
+
+.date-month-year {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2.8vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--deep-burgundy);
+  text-transform: uppercase;
+}
+
+.date-time-venue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.time-chip,
+.venue-chip {
+  padding: 6px 16px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(183, 110, 121, 0.3);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--deep-burgundy);
+}
+
+.date-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+/* -------------------- Flip Countdown -------------------- */
+
+.countdown-wrapper {
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(10px, 2.5vw, 24px);
+  flex-wrap: wrap;
+}
+
+.unit {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.flip-card {
+  position: relative;
+  width: clamp(74px, 17vw, 118px);
+  aspect-ratio: 1 / 1.05;
+  perspective: 700px;
+  border-radius: 18px;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 240, 245, 0.9) 100%);
+  border: 1.5px solid rgba(212, 175, 119, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 14px 34px rgba(183, 110, 121, 0.2);
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.flip-card::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 13px;
+  border: 1px solid rgba(212, 175, 119, 0.3);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 7vw, 54px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--deep-burgundy);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  padding-bottom: 0.06em;
+}
+
+.face.back {
+  opacity: 0;
+  color: var(--rose-gold);
+  pointer-events: none;
+}
+
+.split-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 119, 0.85) 20%, rgba(212, 175, 119, 0.85) 80%, transparent);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.notch {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: rgba(109, 41, 68, 0.12);
+  z-index: 6;
+  pointer-events: none;
+}
+.notch-l { left: -5px; }
+.notch-r { right: -5px; }
+
+.flip-card.flipping .face.back {
+  animation: flip-out 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.flip-card.flipping .face.front {
+  animation: flip-in 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes flip-out {
+  from { transform: rotateX(0deg); opacity: 1; }
+  to { transform: rotateX(-90deg); opacity: 0; }
+}
+
+@keyframes flip-in {
+  from { transform: rotateX(90deg); opacity: 0; }
+  to { transform: rotateX(0deg); opacity: 1; }
+}
+
+.unit-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+/* Celebration State */
+.celebration {
+  padding: 34px 24px;
+  text-align: center;
+  border-radius: var(--radius);
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.celeb-ornament {
+  color: var(--champagne-gold);
+  font-size: 18px;
+  letter-spacing: 6px;
+}
+
+.celeb-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.celeb-text {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--deep-burgundy);
+  margin: 0;
+}
+
+.celeb-script {
+  font-family: var(--font-script);
+  font-size: 26px;
+  color: var(--primary-pink);
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .date-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .date-actions .button {
+    width: 100%;
+  }
+}

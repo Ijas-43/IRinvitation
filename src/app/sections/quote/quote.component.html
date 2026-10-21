@@ -1,0 +1,47 @@
+<section #section id="blessings" class="section quote" aria-labelledby="blessings-title">
+  <div class="container quote__wrap">
+    <!-- Islamic Calligraphy Arch Card -->
+    <div class="verse-card glass-card glass-card--rose" data-reveal>
+      <div class="verse-header">
+        <span class="verse-crescent" aria-hidden="true">☾</span>
+        <span class="verse-kicker">Quranic Blessing</span>
+        <span class="verse-crescent" aria-hidden="true">✦</span>
+      </div>
+
+      <!-- Arabic Quranic Verse -->
+      <blockquote class="quran-quote">
+        <p class="quran-arabic arabic" dir="rtl" lang="ar" data-reveal>
+          {{ verse.arabic }}
+        </p>
+        <cite class="quran-ref" data-reveal>— {{ verse.surah }}</cite>
+        <p class="quran-translation" data-reveal>
+          {{ verse.translation }}
+        </p>
+      </blockquote>
+
+      <div class="verse-divider">
+        <span class="divider-line"></span>
+        <span class="divider-gem">❀</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- Invitation Proclamation -->
+      <div class="invitation-callout" data-reveal-group>
+        <p class="invite-lead" data-reveal>{{ verse.kicker }}</p>
+        <h2 id="blessings-title" class="invite-heading" data-reveal>
+          {{ verse.action }}
+        </h2>
+        <p class="invite-names shimmer" data-reveal>
+          {{ verse.names }}
+        </p>
+        <p class="invite-subtext" data-reveal>
+          {{ verse.subtext }}
+        </p>
+      </div>
+
+      <div class="verse-footer-badge">
+        <span class="brand-chip">✦ {{ brand }} ✦</span>
+      </div>
+    </div>
+  </div>
+</section>

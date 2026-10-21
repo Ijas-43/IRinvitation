@@ -1,0 +1,53 @@
+<section #section id="venue" class="section venue" aria-labelledby="venue-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="section-kicker" data-reveal>{{ cfg.eyebrow }}</p>
+      <h2 id="venue-title">
+        <span class="split-line" data-split>Sacred Venue of</span>
+        <span class="split-line" data-split><i>{{ cfg.name }}</i></span>
+      </h2>
+      <p class="section-lead" data-reveal>{{ cfg.subtitle }}</p>
+    </header>
+
+    <div class="venue__card glass-card glass-card--rose" data-reveal [appTilt]="3">
+      <div class="venue__ornament" aria-hidden="true">
+        <app-floral-frame variant="corner"></app-floral-frame>
+      </div>
+
+      <!-- Islamic Mosque & Location Icon Badge -->
+      <div class="venue__icon-badge">
+        <span class="venue__crescent" aria-hidden="true">☾</span>
+        <div class="venue__pin-wrap">
+          <span class="venue__pin">📍</span>
+        </div>
+        <span class="venue__star" aria-hidden="true">✦</span>
+      </div>
+
+      <h3 class="venue__name shimmer">{{ cfg.name }}</h3>
+
+      <p class="venue__date">
+        <span aria-hidden="true">🗓</span> {{ longDate }}
+      </p>
+
+      <p class="venue__note">
+        With warm hearts and joyful prayers, we await your blessed presence at ECR Masjid.
+      </p>
+
+      <!-- Working "Get Directions" button with the exact Google Maps URL -->
+      <div class="venue__actions">
+        <a
+          class="button primary venue__btn"
+          [href]="cfg.mapUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span aria-hidden="true">🧭</span> {{ cfg.buttonLabel }}
+        </a>
+      </div>
+
+      <div class="venue__ornament venue__ornament--flip" aria-hidden="true">
+        <app-floral-frame variant="corner"></app-floral-frame>
+      </div>
+    </div>
+  </div>
+</section>

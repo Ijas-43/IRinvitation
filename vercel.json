@@ -1,0 +1,1 @@
+{"version":2,"buildCommand":"npm run build -- --configuration production","outputDirectory":"dist/pink-nikah-invitation","rewrites":[{"source":"/(.*)","destination":"/index.html"}]}

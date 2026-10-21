@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Wishes Section — Wishes strictly through WhatsApp only
+   ========================================================================== */
+
+.wishes {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(248, 187, 208, 0.4), transparent 45%),
+    radial-gradient(circle at 15% 85%, rgba(212, 175, 119, 0.22), transparent 45%),
+    linear-gradient(180deg, #fffdfc 0%, #fff0f5 55%, #fce7f0 100%);
+  padding: clamp(80px, 11vw, 130px) 20px;
+}
+
+.wishes-container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.wishes__card {
+  padding: clamp(36px, 6vw, 64px) clamp(22px, 5vw, 48px);
+  text-align: center;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+}
+
+.wishes__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 18px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(212, 175, 119, 0.45);
+}
+
+.badge-icon {
+  color: var(--champagne-gold);
+  font-size: 13px;
+}
+
+.badge-text {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+.wishes__message-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primary-pink);
+  margin: 4px 0 0;
+}
+
+.wishes__quote-box {
+  margin: 0;
+  padding: 22px 26px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed rgba(183, 110, 121, 0.35);
+  max-width: 620px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.wishes__quote-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(16px, 2.2vw, 20px);
+  line-height: 1.7;
+  color: var(--deep-burgundy);
+  margin: 0;
+}
+
+.wishes__subtext {
+  font-size: 14px;
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin: 0;
+}
+
+.wishes__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.wishes__whatsapp-btn {
+  font-size: 13px;
+  padding: 16px 34px;
+  border-radius: 100px;
+}
+
+.wishes__whatsapp-btn .btn-icon {
+  font-size: 18px;
+}
+
+.wishes__copy-btn,
+.wishes__share-btn {
+  font-size: 11.5px;
+  padding: 14px 22px;
+}
+
+.wishes__closing-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 14px;
+}
+
+.brand-monogram {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.brand-sig {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+}
+
+@media (max-width: 600px) {
+  .wishes__card {
+    padding: 30px 18px;
+  }
+  .wishes__actions {
+    flex-direction: column;
+  }
+  .wishes__actions .button {
+    width: 100%;
+  }
+}

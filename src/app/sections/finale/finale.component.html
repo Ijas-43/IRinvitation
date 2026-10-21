@@ -1,0 +1,85 @@
+<footer #section id="thanks" class="section finale" aria-labelledby="finale-heading">
+  <div class="finale__arch" aria-hidden="true">
+    <app-floral-frame variant="arch"></app-floral-frame>
+  </div>
+
+  <div class="container finale__inner">
+    <!-- Heading & Subheading -->
+    <h2 id="finale-heading" class="finale__heading" data-reveal>
+      {{ cfg.heading }}
+    </h2>
+    <p class="finale__subheading" data-reveal>{{ cfg.subheading }}</p>
+
+    <!-- Animated Heart Ornament -->
+    <div class="finale__heart-wrap" data-reveal>
+      <span class="heart-line"></span>
+      <button
+        type="button"
+        class="heart-ornament"
+        (click)="celebrate()"
+        aria-label="Send heartfelt blessings"
+        title="Send heartfelt blessings"
+      >
+        ♥
+      </button>
+      <span class="heart-line"></span>
+    </div>
+
+    <!-- Content Paragraphs -->
+    <div class="finale__content" data-reveal-group>
+      <p class="finale__p" data-reveal>&ldquo;{{ cfg.p1 }}&rdquo;</p>
+      <p class="finale__p" data-reveal>&ldquo;{{ cfg.p2 }}&rdquo;</p>
+      <p class="finale__p finale__p--em" data-reveal>&ldquo;{{ cfg.p3 }}&rdquo;</p>
+    </div>
+
+    <!-- Couple Names, Date, Brand Signature -->
+    <div class="finale__signature" data-reveal>
+      <p class="finale__names script shimmer">
+        {{ cfg.names }}
+      </p>
+      <p class="finale__date">{{ cfg.date }}</p>
+      <div class="finale__brand-badge">
+        <span class="brand-monogram shimmer">I &amp; R</span>
+        <span class="brand-tag">{{ cfg.brand }}</span>
+      </div>
+    </div>
+
+    <!-- Navigation / Direction Actions -->
+    <div class="finale__actions" data-reveal-group>
+      <a
+        class="button primary finale__btn"
+        [href]="whatsappUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        (click)="celebrate()"
+        data-reveal
+      >
+        <span aria-hidden="true">💬</span> Send Duas on WhatsApp
+      </a>
+      <a
+        class="button gold finale__btn"
+        [href]="calendarUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-reveal
+      >
+        <span aria-hidden="true">📅</span> Add to Calendar
+      </a>
+      <a
+        class="button ghost finale__btn"
+        [href]="meta.map"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-reveal
+      >
+        <span aria-hidden="true">📍</span> Get Directions
+      </a>
+    </div>
+
+    <div class="finale__closing" data-reveal>
+      <p class="closing-text">
+        With the blessings of Almighty Allah · Jasbika Wedding 2026
+      </p>
+    </div>
+  </div>
+</footer>

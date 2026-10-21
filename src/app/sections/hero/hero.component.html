@@ -1,0 +1,104 @@
+<header id="home" class="hero">
+  <!-- ambient background with Islamic patterns & soft lighting -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="islamic-star-overlay"></div>
+    <span class="hero-glow g1"></span>
+    <span class="hero-glow g2"></span>
+    <span class="hero-glow g3"></span>
+    <span class="orbit orbit-a" data-parallax="-70" data-parallax-rotate="45"></span>
+    <span class="orbit orbit-b" data-parallax="-130" data-parallax-rotate="-35"></span>
+    <span
+      class="hero-petal"
+      *ngFor="let p of petals"
+      [style.left.%]="p.left"
+      [style.animation-delay.s]="p.delay"
+      [style.animation-duration.s]="p.duration"
+      [style.width.px]="p.size"
+      [style.height.px]="p.size"
+      [style.opacity]="p.opacity"
+      [style.filter]="p.blur ? 'blur(' + p.blur + 'px)' : 'none'"
+    ></span>
+  </div>
+
+  <!-- animated floral arch -->
+  <div class="hero-arch" aria-hidden="true" data-parallax="-46">
+    <app-floral-frame variant="arch"></app-floral-frame>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="hero-content" #content>
+    <!-- Brand / Monogram Badge -->
+    <div class="hero-brand-badge h-anim">
+      <span class="badge-icon">✦</span>
+      <span class="badge-monogram shimmer">I &amp; R</span>
+      <span class="badge-sep">·</span>
+      <span class="badge-text">{{ cfg.hero.brand }}</span>
+      <span class="badge-icon">✦</span>
+    </div>
+
+    <p class="bismillah arabic h-anim" dir="rtl" lang="ar">{{ cfg.hero.bismillah }}</p>
+
+    <p class="eyebrow hero-eyebrow h-anim">{{ cfg.hero.eyebrow }}</p>
+
+    <p class="hero-intro-quote h-anim">
+      &ldquo;{{ cfg.hero.quote }}&rdquo;
+    </p>
+
+    <!-- Couple's Main Names — kept as whole words so the calligraphic swashes
+         of the script font stay connected and are never cropped. -->
+    <h1
+      class="hero-names"
+      #names
+      tabindex="0"
+      role="text"
+      [attr.aria-label]="cfg.hero.names"
+      (mouseenter)="onNamesHover()"
+      (focus)="onNamesHover()"
+      (click)="onNamesClick()"
+    >
+      <span class="names__word">{{ cfg.meta.groom }}</span>&nbsp;
+      <span class="names__amp" aria-hidden="true">&amp;</span>&nbsp;
+      <span class="names__word">{{ cfg.meta.bride }}</span>
+    </h1>
+
+    <div class="hero-rose-rule h-anim">
+      <span class="line-wing"></span>
+      <button
+        class="heart-btn"
+        type="button"
+        (click)="onHeartClick($event)"
+        aria-label="Send love and blessings"
+        title="Send love and blessings"
+      >
+        ❀
+      </button>
+      <span class="line-wing"></span>
+    </div>
+
+    <!-- Date & Venue Highlights -->
+    <div class="hero-details-card glass-card glass-card--rose h-anim">
+      <div class="detail-item detail-date">
+        <span class="detail-icon" aria-hidden="true">🗓</span>
+        <strong class="detail-text">{{ cfg.hero.dateText }}</strong>
+      </div>
+      <div class="detail-divider" aria-hidden="true"></div>
+      <div class="detail-item detail-venue">
+        <span class="detail-icon" aria-hidden="true">📍</span>
+        <span class="detail-text">&ldquo;{{ cfg.hero.venueText }}&rdquo;</span>
+      </div>
+    </div>
+
+    <p class="hero-blessing h-anim">
+      &ldquo;{{ cfg.hero.blessing }}&rdquo;
+    </p>
+
+    <a href="#blessings" class="scroll-cue">
+      <span class="cue-label">{{ cfg.hero.ctaScroll }}</span>
+      <span class="cue-arrow" aria-hidden="true">↓</span>
+    </a>
+  </div>
+
+  <div class="hero-bottom">
+    {{ cfg.hero.footerLine }} <span aria-hidden="true">·</span> {{ cfg.hero.brand }} <span aria-hidden="true">·</span> {{ displayDate | uppercase }}
+  </div>
+</header>

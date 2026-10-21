@@ -1,0 +1,90 @@
+<section id="date" class="section date-countdown-section" #section>
+  <div class="container">
+    <!-- ==================== 5. Beautiful Beginning Message ==================== -->
+    <div class="beginning-card glass-card glass-card--rose" data-reveal>
+      <div class="beginning-badge">
+        <span class="badge-gem">✦</span>
+        <span class="badge-label">{{ cfg.beginning.eyebrow }}</span>
+        <span class="badge-gem">✦</span>
+      </div>
+
+      <h2 class="beginning-title">
+        {{ cfg.beginning.title }} <i>{{ cfg.beginning.titleEm }}</i>
+      </h2>
+
+      <p class="beginning-lead">
+        {{ cfg.beginning.lead }}
+      </p>
+
+      <p class="beginning-sublead">
+        {{ cfg.beginning.sublead }}
+      </p>
+
+      <div class="beginning-monogram">
+        <span class="monogram-text shimmer">I &amp; R</span>
+        <span class="brand-text">{{ cfg.beginning.brand }}</span>
+      </div>
+    </div>
+
+    <!-- ==================== 6. Wedding Date & Countdown ==================== -->
+    <header class="section-head" data-reveal-group>
+      <span class="section-kicker" data-reveal>{{ cfg.countdown.eyebrow }}</span>
+      <h2>
+        <span class="split-line" data-split>{{ cfg.countdown.title }}</span>
+        <i data-reveal>{{ cfg.countdown.titleEm }}</i>
+      </h2>
+      <p class="section-lead" data-reveal>
+        Counting down the moments until our sacred Nikah ceremony insha'Allah.
+      </p>
+    </header>
+
+    <!-- Exact Elegant Date Display -->
+    <div class="date-display-card glass-card" data-reveal>
+      <div class="date-ornament top" aria-hidden="true">✦ ───── ❀ ───── ✦</div>
+      <div class="date-block">
+        <span class="date-weekday">{{ cfg.countdown.day }}</span>
+        <span class="date-number shimmer">{{ cfg.countdown.dateNum }}</span>
+        <span class="date-month-year">{{ cfg.countdown.monthYear }}</span>
+      </div>
+      <div class="date-time-venue">
+        <span class="time-chip">⏰ {{ cfg.countdown.targetTime }}</span>
+        <span class="venue-chip">📍 {{ cfg.meta.venue }}</span>
+      </div>
+      <div class="date-actions">
+        <a class="button gold" [href]="calendarUrl" target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">📅</span> Add to Google Calendar
+        </a>
+        <a class="button ghost" [href]="icsUrl" download="Jasbika-Nikah-Invitation.ics">
+          <span aria-hidden="true">📥</span> Download .ICS
+        </a>
+      </div>
+      <div class="date-ornament bottom" aria-hidden="true">✦ ───── ❀ ───── ✦</div>
+    </div>
+
+    <!-- Premium Animated Flip Countdown -->
+    <div class="countdown-wrapper" data-reveal>
+      <div class="countdown" *ngIf="!finished; else celebration">
+        <div class="unit" *ngFor="let u of units; trackBy: trackByKey">
+          <div class="flip-card" [class.flipping]="u.flipping" [attr.aria-label]="u.label">
+            <span class="face back" aria-hidden="true">{{ u.prev }}</span>
+            <span class="face front">{{ u.value }}</span>
+            <span class="split-line" aria-hidden="true"></span>
+            <span class="notch notch-l" aria-hidden="true"></span>
+            <span class="notch notch-r" aria-hidden="true"></span>
+          </div>
+          <span class="unit-label">{{ u.label }}</span>
+          <span class="sr-only" aria-live="off">{{ u.value }} {{ u.label }}</span>
+        </div>
+      </div>
+
+      <ng-template #celebration>
+        <div class="celebration glass-card glass-card--rose" role="status">
+          <span class="celeb-ornament" aria-hidden="true">✦ ❀ ✦</span>
+          <h3 class="celeb-title shimmer">Alhamdulillah</h3>
+          <p class="celeb-text">{{ cfg.countdown.doneMessage }}</p>
+          <span class="celeb-script">Ijaz &amp; Rasbika · Jasbika</span>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>

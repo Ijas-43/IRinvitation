@@ -1,0 +1,75 @@
+<section #section id="wishes" class="section wishes" aria-labelledby="wishes-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="section-kicker" data-reveal>{{ cfg.eyebrow }}</p>
+      <h2 id="wishes-title">
+        <span class="split-line" data-split>{{ cfg.title }}</span>
+        <span class="split-line" data-split><i>{{ cfg.titleEm }}</i></span>
+      </h2>
+      <p class="section-lead" data-reveal>{{ cfg.lead }}</p>
+    </header>
+
+    <div class="wishes-container" data-reveal-group>
+      <div class="wishes__card glass-card glass-card--rose" data-reveal>
+        <!-- Floral and Crescent Header -->
+        <div class="wishes__badge">
+          <span class="badge-icon">☾</span>
+          <span class="badge-text">Heartfelt Wedding Blessings</span>
+          <span class="badge-icon">✦</span>
+        </div>
+
+        <p class="wishes__message-label">Prefilled Wedding Dua</p>
+
+        <!-- Preview of the prefilled message -->
+        <blockquote class="wishes__quote-box">
+          <p class="wishes__quote-text">
+            &ldquo;{{ cfg.sampleMessage }}&rdquo;
+          </p>
+        </blockquote>
+
+        <p class="wishes__subtext">
+          Tap below to send this dua directly on WhatsApp or copy it to your clipboard.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="wishes__actions">
+          <a
+            class="button whatsapp wishes__whatsapp-btn"
+            [href]="whatsappUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="onSendClick()"
+          >
+            <span class="btn-icon" aria-hidden="true">💬</span>
+            <span>{{ cfg.buttonLabel }}</span>
+          </a>
+
+          <button
+            type="button"
+            class="button ghost wishes__copy-btn"
+            (click)="copyMessage()"
+            [attr.aria-label]="copied ? 'Dua message copied' : 'Copy dua message'"
+          >
+            <span aria-hidden="true">{{ copied ? '✓' : '📋' }}</span>
+            <span>{{ copied ? 'Dua Copied!' : cfg.copyLabel }}</span>
+          </button>
+
+          <button
+            type="button"
+            class="button ghost wishes__share-btn"
+            (click)="shareInvite()"
+            [attr.aria-label]="'Share invitation link'"
+          >
+            <span aria-hidden="true">{{ shared ? '✓' : '🔗' }}</span>
+            <span>{{ shared ? 'Link Shared!' : cfg.shareLabel }}</span>
+          </button>
+        </div>
+
+        <div class="wishes__closing-tag">
+          <span class="brand-monogram shimmer">I &amp; R</span>
+          <span class="brand-sig">{{ meta.brand }} · Insha'Allah</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

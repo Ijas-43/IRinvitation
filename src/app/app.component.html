@@ -1,0 +1,125 @@
+<!-- ============================ 1. Luxury 3D Envelope Opening ============================ -->
+<app-envelope
+  *ngIf="showIntro"
+  (open)="onEnvelopeOpen()"
+  (enter)="onEnvelopeEnter()"
+  (complete)="onEnvelopeComplete()"
+></app-envelope>
+
+<!-- ============================== Navigation Header ============================== -->
+<header
+  class="nav"
+  [class.nav--solid]="scrolled"
+  [class.nav--menu]="menuOpen"
+  [class.nav--hidden]="showIntro && !opened"
+>
+  <a
+    class="nav__brand"
+    href="#home"
+    (click)="scrollTo('#home', $event)"
+    [attr.aria-label]="'Jasbika: ' + cfg.meta.groom + ' and ' + cfg.meta.bride"
+  >
+    <span class="nav__monogram"><span class="nav__monogram-text shimmer">{{ cfg.meta.monogram }}</span></span>
+    <span class="nav__brand-name">{{ cfg.meta.brand }}</span>
+    <span class="nav__names">{{ cfg.meta.groom }} <span class="nav__amp">&amp;</span> {{ cfg.meta.bride }}</span>
+  </a>
+
+  <nav class="nav__links" aria-label="Invitation sections">
+    <a
+      *ngFor="let item of navItems"
+      [href]="item.href"
+      (click)="scrollTo(item.href, $event)"
+      >{{ item.label }}</a
+    >
+  </nav>
+
+  <div class="nav__actions">
+    <button
+      *ngIf="!showIntro"
+      type="button"
+      class="nav__replay"
+      (click)="replayIntro()"
+      aria-label="Replay the invitation envelope opening"
+      title="Replay the invitation intro"
+    >
+      <span class="nav__replay-icon" aria-hidden="true">✦</span>
+      <span class="nav__replay-text">Replay Intro</span>
+    </button>
+    <a
+      class="button primary nav__cta"
+      href="#wishes"
+      (click)="scrollTo('#wishes', $event)"
+    >
+      {{ cfg.nav.ctaLabel }}
+    </a>
+    <button
+      type="button"
+      class="nav__burger"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen"
+      aria-controls="mobile-menu"
+      aria-label="Toggle navigation menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="menu" [class.menu--open]="menuOpen">
+  <nav aria-label="Mobile navigation links">
+    <div class="menu__brand">
+      <span class="menu__monogram shimmer">{{ cfg.meta.monogram }}</span>
+      <span class="menu__title">{{ cfg.meta.brand }}</span>
+    </div>
+    <a
+      *ngFor="let item of navItems"
+      [href]="item.href"
+      (click)="scrollTo(item.href, $event)"
+      >{{ item.label }}</a
+    >
+    <a
+      class="button primary menu__cta"
+      href="#wishes"
+      (click)="scrollTo('#wishes', $event)"
+    >
+      💬 {{ cfg.nav.ctaLabel }} on WhatsApp
+    </a>
+    <button *ngIf="!showIntro" type="button" class="menu__replay" (click)="replayIntro()">
+      ✦ Replay the invitation intro
+    </button>
+  </nav>
+</div>
+
+<!-- ============================== Suggested Website Flow =============================== -->
+<main #main [class.main--hidden]="showIntro && !opened">
+  <!-- 2. Main Invitation Hero -->
+  <app-hero [active]="opened"></app-hero>
+
+  <!-- 3. Quranic Verse & Blessings -->
+  <app-quote></app-quote>
+
+  <!-- 4. Groom & Bride Family Introduction -->
+  <app-couple *ngIf="cfg.couple.enabled"></app-couple>
+
+  <!-- 5. Beautiful Beginning Message & 6. Wedding Date & Countdown -->
+  <app-countdown *ngIf="cfg.countdown.enabled"></app-countdown>
+
+  <!-- 7. Event Schedule -->
+  <app-events *ngIf="cfg.events.enabled"></app-events>
+
+  <!-- 8. Venue & Google Maps -->
+  <app-venue></app-venue>
+
+  <!-- 9. Send Wishes on WhatsApp Only -->
+  <app-wishes *ngIf="cfg.wishes.enabled"></app-wishes>
+
+  <!-- 10. Heartfelt Closing Invitation -->
+  <app-finale *ngIf="cfg.finale.enabled"></app-finale>
+</main>
+
+<!-- ============================== Overlays =============================== -->
+<app-particles aria-hidden="true"></app-particles>
+<app-effects></app-effects>
+<app-scroll-progress></app-scroll-progress>
+<app-music #music></app-music>
