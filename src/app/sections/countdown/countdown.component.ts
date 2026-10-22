@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import {
   INVITE,
   calendarUrlFor,
-  icsDataUrl,
   formatDisplayDate,
 } from '../../invitation.config';
 import { revealOnScroll } from '../../shared/animations';
@@ -40,7 +39,8 @@ export class CountdownComponent implements OnInit, AfterViewInit, OnDestroy {
 
   readonly cfg = INVITE;
   readonly calendarUrl = calendarUrlFor();
-  readonly icsUrl = icsDataUrl();
+  /** Verified Google Maps link for the wedding venue (ECR Masjid, Kottaipattinam). */
+  readonly locationUrl = INVITE.meta.map;
   readonly displayDate = formatDisplayDate(INVITE.meta.date);
 
   finished = false;

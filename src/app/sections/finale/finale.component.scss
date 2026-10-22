@@ -190,6 +190,57 @@
   margin: 0;
 }
 
+/* ---------------------- Developer credit (signature) ----------------------
+   The very last line of the footer. Deep burgundy is used for the wording
+   because rose-gold on the blush gradient only reaches ~2:1 contrast and the
+   credit would all but disappear; the deeper gold is kept for the decorative
+   divider so it still reads like the ornaments used elsewhere. */
+.finale__credit {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 34px 0 0;
+}
+
+.finale__credit-ornament {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--gold-dark);
+}
+
+.finale__credit-wing {
+  display: block;
+  width: clamp(26px, 9vw, 70px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 141, 72, 0.9));
+}
+.finale__credit-wing:last-child {
+  background: linear-gradient(90deg, rgba(184, 141, 72, 0.9), transparent);
+}
+
+.finale__credit-text {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--deep-burgundy);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: letter-spacing 0.4s var(--ease-lux), color 0.4s var(--ease-lux),
+    text-shadow 0.4s var(--ease-lux);
+}
+
+.finale__credit:hover .finale__credit-text {
+  letter-spacing: 0.12em;
+  text-shadow: 0 2px 10px rgba(109, 41, 68, 0.22);
+}
+
 @media (max-width: 600px) {
   .finale__actions {
     flex-direction: column;
@@ -197,5 +248,13 @@
   }
   .finale__actions .button {
     width: 100%;
+  }
+  .finale__credit {
+    margin: 28px 0 0;
+    gap: 10px;
+  }
+  .finale__credit-text {
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
   }
 }
