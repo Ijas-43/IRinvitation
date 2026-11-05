@@ -17,7 +17,7 @@
     class="nav__brand"
     href="#home"
     (click)="scrollTo('#home', $event)"
-    [attr.aria-label]="'Jasbika: ' + cfg.meta.groom + ' and ' + cfg.meta.bride"
+    [attr.aria-label]="cfg.meta.groom + ' and ' + cfg.meta.bride"
   >
     <span class="nav__monogram"><span class="nav__monogram-text shimmer">{{ cfg.meta.monogram }}</span></span>
     <span class="nav__brand-name">{{ cfg.meta.brand }}</span>

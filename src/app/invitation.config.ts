@@ -1,5 +1,5 @@
 /* ============================================================================
- * INVITATION CONFIGURATION — JASBIKA (Ijaz & Rasbika)
+ * INVITATION CONFIGURATION — Ijaz & Rasbika
  * Islamic Nikah Invitation
  * Saturday, 26 December 2026 · ECR Masjid, Kottaipattinam
  * ==========================================================================*/
@@ -208,7 +208,7 @@ export interface InvitationConfig {
 
 export const INVITE: InvitationConfig = {
   meta: {
-    brand: 'Jasbika',
+    brand: 'Nikah',
     monogram: 'I & R',
     groom: 'Ijaz',
     bride: 'Rasbika',
@@ -229,7 +229,7 @@ export const INVITE: InvitationConfig = {
     whatsapp: '919585099241',
     whatsappMessage:
       'Assalamu Alaikum Ijaz & Rasbika! May Allah bless your Nikah with love, mercy, happiness, and endless barakah. May He unite your hearts in goodness and grant you a beautiful life together. Ameen.',
-    hashtag: '#JasbikaWedding',
+    hashtag: '#Nikah2026',
   },
 
   intro: {
@@ -252,7 +252,7 @@ export const INVITE: InvitationConfig = {
   },
 
   hero: {
-    brand: 'Jasbika',
+    brand: 'Nikah',
     monogram: 'I & R',
     bismillah: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
     eyebrow: 'A Beautiful Beginning',
@@ -262,7 +262,7 @@ export const INVITE: InvitationConfig = {
     venueText: 'ECR Masjid, Kottaipattinam',
     blessing: 'May Allah bless this new chapter with love, mercy, and barakah.',
     ctaScroll: 'Scroll to explore our invitation',
-    footerLine: 'Nikah Celebration',
+    footerLine: 'Blessed Union',
   },
 
   verse: {
@@ -280,7 +280,7 @@ export const INVITE: InvitationConfig = {
     eyebrow: 'With the blessings of Allah & our families',
     title: 'Groom & Bride',
     titleEm: 'Family Introduction',
-    brand: 'Jasbika',
+    brand: 'Nikah',
     monogram: 'I & R',
     groom: {
       key: 'groom',
@@ -313,7 +313,7 @@ export const INVITE: InvitationConfig = {
     titleEm: 'Beginning',
     lead: 'With prayers in our hearts and the warmth of our families, we embark on this sacred journey of Nikah. We seek your heartfelt duas as we unite under the blessings and mercy of Allah.',
     sublead: '“Two hearts, one beautiful journey. May Allah bless our days with love and barakah.”',
-    brand: 'Jasbika',
+    brand: 'Nikah',
   },
 
   countdown: {
@@ -339,7 +339,7 @@ export const INVITE: InvitationConfig = {
         id: 'welcome',
         index: '01',
         title: 'A Warm Welcome',
-        timeLabel: '12:30 PM',
+        timeLabel: '04:30 PM',
         description:
           'With warm hearts and heartfelt duas, we welcome our beloved family and friends to share in this blessed celebration.',
         iso: '2026-12-26T12:30:00+05:30',
@@ -349,10 +349,10 @@ export const INVITE: InvitationConfig = {
       {
         id: 'feast',
         index: '02',
-        title: 'Wedding Feast',
-        timeLabel: '1:30 PM',
+        title: 'Tea & Dates',
+        timeLabel: '05:00 PM',
         description:
-          'Join us for a delightful wedding feast as we celebrate togetherness, gratitude, and the blessings of Allah.',
+          'Join us for a warm cup of tea and delicious dates as we celebrate togetherness, gratitude, and the blessings of Allah.',
         iso: '2026-12-26T13:30:00+05:30',
         venue: 'ECR Masjid, Kottaipattinam',
         mapUrl: 'https://maps.app.goo.gl/99cch99DEdXFG6nA9',
@@ -414,18 +414,18 @@ export const INVITE: InvitationConfig = {
     p3: "We can't wait to celebrate with you.",
     names: 'Ijaz & Rasbika',
     date: '26 December 2026',
-    brand: 'Jasbika',
+    brand: 'Nikah',
   },
 
   music: {
     src: 'assets/audio/wedding-background.mpeg',
-    title: 'Jasbika Nikah Theme',
+    title: 'Nikah Theme',
     artist: 'Wedding Instrumental',
     volume: 0.5,
   },
 
   nav: {
-    brand: 'Jasbika',
+    brand: 'Nikah',
     monogram: 'I & R',
     ctaLabel: 'Send Duas',
     items: [
@@ -476,7 +476,7 @@ function toGCalStamp(d: Date): string {
 /** Google Calendar "add event" URL for any configured event */
 export function calendarUrlFor(
   iso: string = INVITE.meta.date,
-  title: string = 'Nikah Ceremony of Ijaz & Rasbika (Jasbika)',
+  title: string = 'Nikah Ceremony of Ijaz & Rasbika',
   details: string = 'ECR Masjid, Kottaipattinam. May Allah bless their union.',
   location: string = 'ECR Masjid, Kottaipattinam',
 ): string {
@@ -497,7 +497,7 @@ export function calendarUrlFor(
 export function icsDataUrl(
   iso: string = INVITE.meta.date,
   title: string = 'Nikah Ceremony of Ijaz & Rasbika',
-  details: string = 'Jasbika Wedding at ECR Masjid, Kottaipattinam',
+  details: string = 'Nikah Ceremony at ECR Masjid, Kottaipattinam',
   location: string = 'ECR Masjid, Kottaipattinam',
 ): string {
   const start = new Date(iso);
@@ -506,9 +506,9 @@ export function icsDataUrl(
   const ics = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Jasbika Islamic Nikah Invitation//EN',
+    'PRODID:-//Islamic Nikah Invitation//EN',
     'BEGIN:VEVENT',
-    `UID:${start.getTime()}@jasbika-invitation`,
+    `UID:${start.getTime()}@nikah-invitation`,
     `DTSTAMP:${stamp(new Date())}`,
     `DTSTART:${stamp(start)}`,
     `DTEND:${stamp(end)}`,

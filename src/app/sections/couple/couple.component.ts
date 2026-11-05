@@ -15,7 +15,7 @@ import { INVITE, formatDisplayDate } from '../../invitation.config';
 /**
  * Groom & Bride introduction — symmetrical glassmorphism cards,
  * Islamic medallions, family parentage, qualification badges,
- * and central intertwined I & R Jasbika monogram.
+ * and central intertwined I & R monogram.
  */
 @Component({
   selector: 'app-couple',

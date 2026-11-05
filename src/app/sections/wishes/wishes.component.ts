@@ -62,7 +62,7 @@ export class WishesComponent implements AfterViewInit, OnDestroy {
 
   async shareInvite(): Promise<void> {
     const shareData = {
-      title: 'Ijaz & Rasbika Nikah Invitation — Jasbika',
+      title: 'Ijaz & Rasbika Nikah Invitation',
       text: this.cfg.sampleMessage,
       url: window.location.href,
     };

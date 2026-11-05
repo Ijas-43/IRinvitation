@@ -52,7 +52,7 @@ export class FinaleComponent implements AfterViewInit, OnDestroy {
   get calendarUrl(): string {
     return calendarUrlFor(
       this.meta.date,
-      `Nikah Ceremony: ${this.meta.groom} & ${this.meta.bride} (${this.meta.brand})`,
+      `Nikah Ceremony: ${this.meta.groom} & ${this.meta.bride}`,
       'Join us for our Nikah celebration at ECR Masjid, Kottaipattinam.',
       this.meta.venue,
     );

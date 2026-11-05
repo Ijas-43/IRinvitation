@@ -25,10 +25,10 @@ import { WishesComponent } from './sections/wishes/wishes.component';
 import { FinaleComponent } from './sections/finale/finale.component';
 import { MusicComponent } from './sections/music/music.component';
 
-const INTRO_SESSION_KEY = 'jasbika-nikah-intro-viewed';
+const INTRO_SESSION_KEY = 'nikah-intro-viewed';
 
 /**
- * Jasbika Nikah Invitation Root Application Component:
+ * Nikah Invitation Root Application Component:
  * - Controls the cinematic Islamic opening intro
  * - Sticky navigation and mobile drawer
  * - Complete website section flow

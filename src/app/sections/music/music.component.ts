@@ -175,7 +175,7 @@ export class MusicComponent implements OnDestroy {
 
   constructor() {
     // Check saved session preference
-    if (sessionStorage.getItem('jasbika-music') === 'on') {
+    if (sessionStorage.getItem('nikah-music') === 'on') {
       this.playing = false; // awaits user gesture
     }
   }
@@ -242,7 +242,7 @@ export class MusicComponent implements OnDestroy {
   private start(): void {
     this.playing = true;
     try {
-      sessionStorage.setItem('jasbika-music', 'on');
+      sessionStorage.setItem('nikah-music', 'on');
     } catch {}
 
     if (INVITE.music.src && INVITE.music.src.trim()) {
@@ -255,7 +255,7 @@ export class MusicComponent implements OnDestroy {
   private pause(): void {
     this.playing = false;
     try {
-      sessionStorage.setItem('jasbika-music', 'off');
+      sessionStorage.setItem('nikah-music', 'off');
     } catch {}
 
     if (this.audio) {

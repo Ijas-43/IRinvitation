@@ -7,17 +7,9 @@
     <span class="hero-glow g3"></span>
     <span class="orbit orbit-a" data-parallax="-70" data-parallax-rotate="45"></span>
     <span class="orbit orbit-b" data-parallax="-130" data-parallax-rotate="-35"></span>
-    <span
-      class="hero-petal"
-      *ngFor="let p of petals"
-      [style.left.%]="p.left"
-      [style.animation-delay.s]="p.delay"
-      [style.animation-duration.s]="p.duration"
-      [style.width.px]="p.size"
-      [style.height.px]="p.size"
-      [style.opacity]="p.opacity"
-      [style.filter]="p.blur ? 'blur(' + p.blur + 'px)' : 'none'"
-    ></span>
+    <span class="hero-petal" *ngFor="let p of petals" [style.left.%]="p.left" [style.animation-delay.s]="p.delay"
+      [style.animation-duration.s]="p.duration" [style.width.px]="p.size" [style.height.px]="p.size"
+      [style.opacity]="p.opacity" [style.filter]="p.blur ? 'blur(' + p.blur + 'px)' : 'none'"></span>
   </div>
 
   <!-- animated floral arch -->
@@ -46,16 +38,8 @@
 
     <!-- Couple's Main Names — kept as whole words so the calligraphic swashes
          of the script font stay connected and are never cropped. -->
-    <h1
-      class="hero-names"
-      #names
-      tabindex="0"
-      role="text"
-      [attr.aria-label]="cfg.hero.names"
-      (mouseenter)="onNamesHover()"
-      (focus)="onNamesHover()"
-      (click)="onNamesClick()"
-    >
+    <h1 class="hero-names" #names tabindex="0" role="text" [attr.aria-label]="cfg.hero.names"
+      (mouseenter)="onNamesHover()" (focus)="onNamesHover()" (click)="onNamesClick()">
       <span class="names__word">{{ cfg.meta.groom }}</span>&nbsp;
       <span class="names__amp" aria-hidden="true">&amp;</span>&nbsp;
       <span class="names__word">{{ cfg.meta.bride }}</span>
@@ -63,13 +47,8 @@
 
     <div class="hero-rose-rule h-anim">
       <span class="line-wing"></span>
-      <button
-        class="heart-btn"
-        type="button"
-        (click)="onHeartClick($event)"
-        aria-label="Send love and blessings"
-        title="Send love and blessings"
-      >
+      <button class="heart-btn" type="button" (click)="onHeartClick($event)" aria-label="Send love and blessings"
+        title="Send love and blessings">
         ❀
       </button>
       <span class="line-wing"></span>
@@ -99,6 +78,7 @@
   </div>
 
   <div class="hero-bottom">
-    {{ cfg.hero.footerLine }} <span aria-hidden="true">·</span> {{ cfg.hero.brand }} <span aria-hidden="true">·</span> {{ displayDate | uppercase }}
+    {{ cfg.hero.footerLine }} <span aria-hidden="true">·</span> I&R {{ cfg.hero.brand }} <span
+      aria-hidden="true">·</span> {{ displayDate | uppercase }}
   </div>
 </header>

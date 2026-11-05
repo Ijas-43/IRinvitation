@@ -19,7 +19,7 @@ import { INVITE } from '../../invitation.config';
 })
 export class QuoteComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('section', { static: true }) sectionRef!: ElementRef<HTMLElement>;
-
+  readonly cfg = INVITE;
   readonly verse = INVITE.verse;
   readonly brand = INVITE.meta.brand;
 

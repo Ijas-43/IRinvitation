@@ -33,7 +33,7 @@ export class EventsComponent implements AfterViewInit, OnDestroy {
   calendarUrl(ev: WeddingEventItem): string {
     return calendarUrlFor(
       ev.iso,
-      `${ev.title} — ${this.meta.groom} & ${this.meta.bride} (${this.meta.brand})`,
+      `${ev.title} — ${this.meta.groom} & ${this.meta.bride}`,
       ev.description,
       ev.venue,
     );
